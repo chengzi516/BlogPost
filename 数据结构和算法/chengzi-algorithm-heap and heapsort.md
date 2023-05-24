@@ -90,7 +90,7 @@ void heappush(heap* hp, int x) {
 ```
 ### 🤸‍♀向上调整算法
 重点要讲的就是堆调整的算法---`向上调整算法`。
-<img src="../photo/datastructureandalgorithm/堆排序2.png">
+<img src="../photo/datastructureandalgorithm/堆排序2.jpg">
 以上图为例，我们建立一个`大堆`，那么向上调整的意思就是从最后一个节点开始，与自己的父节点进行比较，如果比父节点大，就将值和父节点进行交换，然后`从下往上`遍历这个分支。
 ```c
 void adjustup(int* arr, int child){
@@ -108,7 +108,7 @@ void adjustup(int* arr, int child){
 }
 ```
 父节点和子节点的关系在开头就已经提出过，在此就不多赘述。 但请让在插入整个数据前，前面的数据已经是一个堆了。
-<img src="../photo/datastructureandalgorithm/堆排序3.png">
+<img src="../photo/datastructureandalgorithm/堆排序3.jpg">
 以上一个图为例，因为是插入一个数据就调整一次，当插入到最后的60时，前面就已经是大堆了。所以我们只需要沿着60这个分支往上进行遍历。
 ### 🤸‍♂向下调整算法
 如果不是单个数据的插入，而是直接给出一个数组让你将他`调整为堆`，可以使用`向下调整算法`。又或者你将堆中一个数据进行了删除，也得使用向下调整来调整整个结构。
@@ -239,11 +239,11 @@ int end = n - 1;
 		--end;
 	}
 ```
-<img src="../photo/datastructureandalgorithm/堆排序4.png">
+<img src="../photo/datastructureandalgorithm/堆排序4.jpg">
 
 堆排序是一种非常快速的排序，其时间复杂度为O（n*logn）。
 以向下调整为例，是从最后一层开始调的：
-<img src="../photo/datastructureandalgorithm/堆排序5.png">
+<img src="../photo/datastructureandalgorithm/堆排序5.jpg">
 高度从1开始，假设为一个满二叉树。
 建堆时，每一个数都会与下面的层数进行对比，满足条件即交换，最多的情况下就会交换`h-n`次，n为当前的层数。
 可见建堆的比较次数为：
@@ -271,7 +271,7 @@ $$
 也就是n*logn了。
 为何向上要比向下更复杂呢？因为向上用到了`最后一层`，最后一层相当于有`接近总数一半`的节点！
 建堆的复杂度分析完毕，接下来就是排序的部分了。
-<img src="../photo/datastructureandalgorithm/堆排序6.png">
+<img src="../photo/datastructureandalgorithm/堆排序6.jpg">
 只看最后一层，都有$2^{h-1}$个节点，最坏情况下，每个都要比较h-1次，也就是$2^{h-1}*(h-1)$
 这里就很想向上调整了：
 $$
