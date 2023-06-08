@@ -66,3 +66,63 @@ public:
 ```
 关于为何 value1=num1[end1--]-'0'中要减去一个'0':
 在C++中，字符类型和数字类型之间存在一个ASCII码的`映射关系`。例如，字符'0'的ASCII码值是`48`，字符'1'的ASCII码值是`49`，以此类推。在字符串中，每个数字字符都对应着一个ASCII码值。例如，字符'0'对应着ASCII码值48，字符'1'对应着ASCII码值49，以此类推。当将一个数字字符转换为数字类型时，需要将其对应的ASCII码值减去字符'0'的ASCII码值，才能得到数字类型的值。例如，字符'1'对应的ASCII码值是49，减去字符'0'的ASCII码值48后，得到数字类型的值1。
+
+# :movie_camera:反转字符串
+编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 s 的形式给出。
+
+不要给另外的数组分配额外的空间，你必须`原地修改`输入数组、使用 O(1) 的额外空间解决这一问题。
+
+ 
+>示例 1：
+输入：s = ["h","e","l","l","o"]
+输出：["o","l","l","e","h"]
+示例 2：
+输入：s = ["H","a","n","n","a","h"]
+输出：["h","a","n","n","a","H"]
+
+链接：https://leetcode.cn/problems/reverse-string
+
+思路：简单的双指针问题。
+
+代码：
+```c++
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+      int l=0;
+      int r=s.size()-1;
+      //判空
+      if(s.empty())
+        return;
+      while(l<r){
+          int tmp =s[l];
+          s[l]=s[r];
+          s[r]=tmp;
+          l++;
+          r--;
+      }  
+    }
+};
+```
+
+
+# :movie_camera:字符串中的第一个唯一字符
+
+给定一个字符串 s ，找到 它的第一个`不重复的字符`，并返回它的`索引` 。如果不存在，则返回 -1 。
+
+ 
+
+>示例 1：
+输入: s = "leetcode"
+输出: 0
+示例 2:
+输入: s = "loveleetcode"
+输出: 2
+示例 3:
+输入: s = "aabb"
+输出: -1
+
+链接：https://leetcode.cn/problems/first-unique-character-in-a-string
+
+
+
