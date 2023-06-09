@@ -2,15 +2,15 @@
 title: 【leetcode】string的相关oj
 cover: https://tuchuang-1317757279.cos.ap-chengdu.myqcloud.com/1610173947-QjrHlC-LeetCode.png
 tags:
-  - 刷题
-  - c语言
+- 刷题
+- c语言
 date: 2023-06-06 17:45:18
 categories: 
 - 刷题
 ai: ture
 ---
 
-# :movie_camera:题1
+# :movie_camera:字符串相加
 
 给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和并同样以字符串形式返回。
 
@@ -123,6 +123,25 @@ public:
 输出: -1
 
 链接：https://leetcode.cn/problems/first-unique-character-in-a-string
+代码：
+```c++
+class Solution {
+public:
+    int firstUniqChar(string s) {
+       //ASCII码表中只有256个字符，所以可以将count数组的大小设置为256。这样就可以将每个字符映射到count数组的一个位置上
+       int count[256]={0};
+       int size=s.size();
+       for(int i=0;i<size;i++)
+         count[s[i]]+=1;
+       for(int i=0;i<size;i++){
+           if(count[s[i]]==1)
+            return i;
+       }
+       return -1;
+    }
+};
+```
+
 
 
 
