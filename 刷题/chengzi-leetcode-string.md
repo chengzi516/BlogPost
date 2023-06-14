@@ -145,3 +145,36 @@ public:
 
 
 
+# :movie_camera: 反转字符串的单词
+
+给定一个字符串 s ，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+
+ 
+>示例 1：
+输入：s = "Let's take LeetCode contest"
+输出："s'teL ekat edoCteeL tsetnoc"
+示例 2:
+输入： s = "God Ding"
+输出："doG gniD"
+
+思路：使用两个for循环，第一个循环确定需要反转单词的最后一个坐标（需要减1），第二个循环用于进行反转。j是从需要反转的单词的第一位开始往后，循环操作至单词中间即可。需要注意循环的控制条件`(k+i-1)/2`以及swap的坐标控制。
+
+```c++
+class Solution {
+public:
+    string reverseWords(string s) {
+        int k=0;
+        for(int i=0;i<=s.length();i++){
+            if(s[i]==' '||i==s.length()){
+               for(int j=k;j<=(k+i-1)/2;j++){
+                   swap(s[j],s[i-1-j+k]);
+               }
+               k=i+1;
+            }
+        }        
+        return s;
+    }
+   
+};
+
+```
