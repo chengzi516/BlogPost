@@ -4,13 +4,14 @@ date: 2023-07-28 15:51:28
 tags:
 - c++
 - queue
+- 数据结构
 categories:
-- c/c++
+- 数据结构与算法
 ai: ture
-cover: https://tuchuang-1317757279.cos.ap-chengdu.myqcloud.com/c++.png
+cover: https://tuchuang-1317757279.cos.ap-chengdu.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.jpg
 ---
 
-# 概念
+# 🐶概念
 
 >在 C\+\+ 中，std::priority_queue 是一个优先级队列的实现，它提供了按照优先级进行元素存储和访问的功能。与 Python 中的 PriorityQueue 类似，C++ 的 std::priority_queue 使用`堆数据结构`来实现。
 
@@ -53,7 +54,7 @@ int size = pq.size();  // 返回队列中元素的个数
 
 >默认情况下，std::priority_queue 的元素是按照`降序`排列的。也就是说，最大的元素拥有最高的优先级。如果想要实现最小值优先的队列，可以传递一个比较函数对象作为模板参数。
 
-# 模拟
+# 🐭模拟
 
 模拟实现只需要建堆就好了。
 不过在此之前还得解决一下如何实现最小值优先。
