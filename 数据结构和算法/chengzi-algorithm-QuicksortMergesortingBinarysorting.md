@@ -365,7 +365,7 @@ void mergesortnonr(int* a, int numsize) {
 例如给定一个`有序`的整数数组，我们需要寻找其中是否有4这个数字，那么给定的判断条件就可以是x>=4或者x<=4.
 先假设取得的值为mid=（l+r/2），那么可以得到下图的推断。
 我们需要寻找的值就是蓝色的最右边，红色的最左边。
- <img src="../photo/datastructureandalgorithm/快排归并排4.gif">
+ <img src="../photo/datastructureandalgorithm/快排归并排4.jpg">
 在此基础上不断的进行二分，缩小数组的查找区间。这就是二分的基本思路。
 以下是给出的代码模板。
 
