@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)file:///C:/Users/13378343877/AppData/Local/Temp/crossnote2024103-4708-1ygiuxa.r1q6.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>继承与多态</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+        <script type="text/javascript">
+          window.MathJax = ({"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"options":{},"loader":{}});
+        </script>
+        <script type="text/javascript" async="" src="./继承与多态_files/tex-mml-chtml.js.下载" charset="UTF-8"></script>
+        
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<blockquote>
+<p>学到了cpp的继承和多态这块，感觉知识点还是很细碎繁杂的，所以就写了一篇博客记录一下在这一块遇到的一些容易搞错的问题。</p>
+</blockquote>
+<h1 id="三种继承">三种继承 </h1>
+<blockquote>
+<p>cpp的三种继承：public（公有继承）、protected（保护继承）和private（私有继承）。</p>
+</blockquote>
+<h2 id="公有继承">公有继承 </h2>
+<p>公有继承是最常见的继承方式，基类的公有成员在派生类中仍然是公有的，保护成员在派生类中变为保护的，私有成员在派生类中是不可访问的。<br>
+使用public关键字来表示公有继承。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token comment">// 基类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> publicVar<span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">publicFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Base::publicFunc()"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token keyword keyword-protected">protected</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> protectedVar<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> privateVar<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 派生类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">DerivedPublic</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Base</span></span> <span class="token punctuation">{</span>
+    <span class="token comment">// publicVar 是公有的</span>
+    <span class="token comment">// publicFunc() 是公有的</span>
+    <span class="token comment">// protectedVar 变为保护的</span>
+    <span class="token comment">// privateVar 不可访问</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    DerivedPublic derived<span class="token punctuation">;</span>
+    derived<span class="token punctuation">.</span>publicVar <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span> <span class="token comment">// 可访问</span>
+    derived<span class="token punctuation">.</span><span class="token function">publicFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 可访问</span>
+    <span class="token comment">//derived.protectedVar = 10; // 错误，不能访问</span>
+    <span class="token comment">//derived.privateVar = 20; // 错误，不能访问</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="保护继承">保护继承 </h2>
+<p>保护继承使得基类的公有和保护成员在派生类中变为保护的，私有成员在派生类中是不可访问的。<br>
+使用protected关键字来表示保护继承。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token comment">// 基类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> publicVar<span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">publicFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Base::publicFunc()"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token keyword keyword-protected">protected</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> protectedVar<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> privateVar<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 派生类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">DerivedProtected</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-protected">protected</span> <span class="token class-name">Base</span></span> <span class="token punctuation">{</span>
+    <span class="token comment">// publicVar 变为保护的</span>
+    <span class="token comment">// publicFunc() 变为保护的</span>
+    <span class="token comment">// protectedVar 变为保护的</span>
+    <span class="token comment">// privateVar 不可访问</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    DerivedProtected derived<span class="token punctuation">;</span>
+    <span class="token comment">//derived.publicVar = 42; // 错误，不能访问</span>
+    <span class="token comment">//derived.publicFunc();  // 错误，不能访问</span>
+    <span class="token comment">//derived.protectedVar = 10; // 错误，不能访问</span>
+    <span class="token comment">//derived.privateVar = 20; // 错误，不能访问</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="私有继承">私有继承 </h2>
+<p>私有继承使得基类的公有和保护成员在派生类中变为私有的，私有成员在派生类中是不可访问的。<br>
+使用private关键字来表示私有继承。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token comment">// 基类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> publicVar<span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">publicFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Base::publicFunc()"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token keyword keyword-protected">protected</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> protectedVar<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> privateVar<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 派生类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">DerivedPrivate</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-private">private</span> <span class="token class-name">Base</span></span> <span class="token punctuation">{</span>
+    <span class="token comment">// publicVar 变为私有的</span>
+    <span class="token comment">// publicFunc() 变为私有的</span>
+    <span class="token comment">// protectedVar 变为私有的</span>
+    <span class="token comment">// privateVar 不可访问</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    DerivedPrivate derived<span class="token punctuation">;</span>
+    <span class="token comment">//derived.publicVar = 42; // 错误，不能访问</span>
+    <span class="token comment">//derived.publicFunc();  // 错误，不能访问</span>
+    <span class="token comment">//derived.protectedVar = 10; // 错误，不能访问</span>
+    <span class="token comment">//derived.privateVar = 20; // 错误，不能访问</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>总结一下：基类private成员在派生类中不管怎么继承<code>都是不可见</code>的。<br>
+使用关键字<code>class</code>时默认的继承方式是<code>private</code>，使用<code>struct</code>时默认的继承方式是<code>public</code>，不过最好直接了当地写出继承方式。<br>
+在实际运用中一般使用都是public继承，几乎很少使用protetced/private继承，也不提倡使用protetced/private继承，因为protetced/private继承下来的成员都只能在派生类的类里面使用，实际中扩展维护性不强。</p>
+<h1 id="基类和派生类的赋值转换">基类和派生类的赋值转换 </h1>
+<blockquote>
+<p>基类和派生类之间的对象赋值转换包括两种类型：向上转换（Upcasting）和向下转换（Downcasting）。</p>
+</blockquote>
+<h2 id="向上转换upcasting">向上转换（Upcasting） </h2>
+<p>向上转换是将<code>派生类</code>的指针或引用赋值给<code>基类</code>指针或引用的过程。由于派生类<code>包含了基类的部分</code>，所以向上转换是安全的。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token comment">// 基类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Base class"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 派生类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Derived</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Base</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Derived class"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Derived derivedObj<span class="token punctuation">;</span>
+    Base<span class="token operator">*</span> basePtr <span class="token operator">=</span> <span class="token operator">&amp;</span>derivedObj<span class="token punctuation">;</span> <span class="token comment">// 向上转换</span>
+
+    basePtr<span class="token operator">-&gt;</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出 "Base class"，即使是派生类对象，调用的也是基类的函数</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>不要把这个和多态搞混了，实现多态需要使用<code>虚函数</code>。这个在后面会提。<br>
+之所以会出现子类对象调用父类函数的原因是因为：在向上转换的情况下，将派生类对象的地址赋值给基类指针basePtr，调用basePtr-&gt;display()时，编译器会根据<code>指针的静态类型（即基类指针）</code>来确定调用的函数。因为静态类型是<code>Base*</code>，编译器会查找Base类中是否有名为display的成员函数。即使在派生类Derived中也存在名为display的成员函数，编译器也只会在Base类中查找。</p>
+<p>这种行为称为<code>静态绑定或早绑定</code>，因为编译器在编译时就确定了要调用的成员函数，不考虑运行时对象的实际类型。</p>
+<h2 id="向下转换downcasting">向下转换（Downcasting） </h2>
+<p>向下转换是将基类的指针或引用赋值给派生类指针或引用的过程。由于基类可能不是派生类的对象，因此向下转换需要进行类型检查，确保转换是有效的。<br>
+但是实际中很少会用到向下转换。<br>
+为了进行向下转换（从基类到派生类），可以使用<code>dynamic_cast</code>运算符，但是这种转换要求基类指针指向的对象必须是<code>派生类的实例</code>，否则转换会失败并返回nullptr。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token comment">// 基类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-void">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>   <span class="token comment">//虚函数，实现了多态。</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Base class"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 派生类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Derived</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Base</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-override">override</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Derived class"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Base baseObj<span class="token punctuation">;</span>
+    Derived derivedObj<span class="token punctuation">;</span>
+    Base<span class="token operator">*</span> basePtr <span class="token operator">=</span> <span class="token operator">&amp;</span>derivedObj<span class="token punctuation">;</span>
+
+    basePtr<span class="token operator">-&gt;</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 因为base里的displya是虚函数，所以输出 "Derived class"，通过基类指针调用派生类的函数</span>
+
+    <span class="token comment">// 向下转换，几乎不会使用！看看就行了</span>
+    Derived<span class="token operator">*</span> derivedPtr <span class="token operator">=</span> <span class="token generic-function"><span class="token function">dynamic_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span>Derived<span class="token operator">*</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>basePtr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>derivedPtr <span class="token operator">!=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        derivedPtr<span class="token operator">-&gt;</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出 "Derived class"</span>
+    <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to downcast"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre><h1 id="重载和隐藏">重载和隐藏 </h1>
+<blockquote>
+<p>重载（Overloading）和隐藏（Hiding）是两种不同的概念，用于描述函数和成员变量在继承关系中的行为。</p>
+</blockquote>
+<h2 id="函数重载function-overloading">函数重载（Function Overloading） </h2>
+<p>函数重载是指在<code>同一个作用域</code>内，定义了多个函数，它们具有<code>相同的名称但具有不同的参数列表</code>。函数重载的目的是为了提供一种简洁和直观的方式来处理不同类型或数量的参数，以实现相似的功能。在进行函数调用时，编译器根据调用的函数参数类型和数量来决定要调用的具体函数。</p>
+<ol>
+<li>函数重载发生在<code>同一个作用域</code>内。</li>
+<li>函数重载根据<code>函数的参数列表</code>来区分函数。</li>
+<li>返回值类型不会影响函数重载的判定。</li>
+</ol>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token comment">// 函数重载示例</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Integer: "</span> <span class="token operator">&lt;&lt;</span> num <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Double: "</span> <span class="token operator">&lt;&lt;</span> num <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 调用 void print(int num)</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token number">2.1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 调用 void print(double num)</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="成员函数隐藏member-function-hiding">成员函数隐藏（Member Function Hiding） </h2>
+<p>成员函数隐藏是指在派生类中定义一个<code>与基类中成员函数名称相同</code>的函数，该派生类函数会<code>隐藏</code>基类中的同名函数，使得在派生类对象上<code>无法直接访问</code>基类的同名函数。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token comment">// 基类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Base class"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 派生类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Derived</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Base</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Derived class"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Derived derivedObj<span class="token punctuation">;</span>
+    derivedObj<span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出 "Derived class"</span>
+
+    <span class="token comment">// 隐藏了基类的 display() 函数，无法直接通过派生类对象调用基类函数</span>
+    <span class="token comment">// derivedObj.Base::display(); // 通过限定作用域可以访问基类的同名函数</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>总结一波：在继承体系中基类和派生类都有<code>独立</code>的作用域。子类和父类中有同名成员，子类成员将屏蔽父类对同名成员的直接访问，这种情况叫隐藏，也叫重定义。如果是成员函数的隐藏，<code>只需要函数名相同</code>就构成隐藏。</p>
+<h1 id="默认成员函数">默认成员函数 </h1>
+<p>默认成员函数的本意就是如果我们不写，那么编译器会自动为我们生成。<br>
+派生类的成员函数会遵循这样的规则：</p>
+<blockquote>
+<p>派生类的构造函数负责初始化派生类<code>自己的成员以及基类的成员</code>。在派生类的构造函数中，需要在构造函数的初始化列表中<code>显式调用基类的构造函数</code>来初始化基类的成员。如果基类没有默认构造函数（无参构造函数），则必须通过派生类构造函数的初始化列表来调用基类构造函数，并传递必要的参数。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">Base</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Base类构造函数</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Derived</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Base</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">Derived</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> y<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">Base</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Derived类构造函数</span>
+        <span class="token comment">// Base类的构造函数通过初始化列表调用，传递参数 x</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><blockquote>
+<p>派生类的拷贝构造函数必须调用基类的拷贝构造完成基类的拷贝初始化。</p>
+</blockquote>
+<p>当使用派生类对象初始化另一个派生类对象或将派生类对象传递给函数时，需要调用拷贝构造函数。在派生类的拷贝构造函数中，必须<code>调用基类的拷贝构造函数</code>来完成基类成员的拷贝初始化，以确保基类部分正确地复制。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">Base</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Base<span class="token operator">&amp;</span> other<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Base类拷贝构造函数</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Derived</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Base</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">Derived</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Derived<span class="token operator">&amp;</span> other<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">Base</span><span class="token punctuation">(</span>other<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Derived类拷贝构造函数</span>
+        <span class="token comment">// Base类的拷贝构造函数通过初始化列表调用</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><blockquote>
+<p>派生类的operator=必须要调用基类的operator=完成基类的复制。</p>
+</blockquote>
+<p>类的赋值运算符（operator=）用于将一个对象的值赋给另一个对象。当派生类需要赋值运算符时，应该在派生类的operator=中<code>调用基类的operator=</code>来完成基类部分的复制操作。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    Base<span class="token operator">&amp;</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Base<span class="token operator">&amp;</span> other<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Base类赋值运算符</span>
+        <span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Derived</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Base</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    Derived<span class="token operator">&amp;</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Derived<span class="token operator">&amp;</span> other<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Derived类赋值运算符</span>
+        Base<span class="token double-colon punctuation">::</span><span class="token keyword keyword-operator">operator</span><span class="token operator">=</span><span class="token punctuation">(</span>other<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 调用基类的赋值运算符</span>
+        <span class="token comment">// 处理派生类的赋值操作</span>
+        <span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><blockquote>
+<p>派生类的析构函数会在被调用完成后<code>自动调用基类的析构函数</code>清理基类成员。因为这样才能保证派生类对象先清理派生类成员再清理基类成员的顺序。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token operator">~</span><span class="token function">Base</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Base类析构函数</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Derived</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Base</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token operator">~</span><span class="token function">Derived</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Derived类析构函数</span>
+        <span class="token comment">// 在析构函数执行完毕后，会自动调用Base类的析构函数</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><h1 id="友元和静态成员">友元和静态成员 </h1>
+<h2 id="友元">友元 </h2>
+<p>友元关系<code>不能继承</code>，也就是说基类友元不能访问子类私有和保护成员 。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> privateData<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-protected">protected</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> protectedData<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">Base</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">privateData</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">protectedData</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token comment">// 友元函数声明</span>
+    <span class="token keyword keyword-friend">friend</span> <span class="token keyword keyword-void">void</span> <span class="token function">friendFunction</span><span class="token punctuation">(</span>Base<span class="token operator">&amp;</span> obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">friendFunction</span><span class="token punctuation">(</span>Base<span class="token operator">&amp;</span> obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 在友元函数中可以访问Base类的私有和保护成员</span>
+    <span class="token keyword keyword-int">int</span> a <span class="token operator">=</span> obj<span class="token punctuation">.</span>privateData<span class="token punctuation">;</span>    <span class="token comment">// 可以访问私有成员</span>
+    <span class="token keyword keyword-int">int</span> b <span class="token operator">=</span> obj<span class="token punctuation">.</span>protectedData<span class="token punctuation">;</span>  <span class="token comment">// 可以访问保护成员</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Derived</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Base</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> derivedPrivateData<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">Derived</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">derivedPrivateData</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Base baseObj<span class="token punctuation">;</span>
+    <span class="token function">friendFunction</span><span class="token punctuation">(</span>baseObj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 友元函数可以访问Base类的私有和保护成员</span>
+
+    Derived derivedObj<span class="token punctuation">;</span>
+    <span class="token function">friendFunction</span><span class="token punctuation">(</span>derivedObj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// error！友元关系不能继承，不能直接访问Derived类的私有和保护成员</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Base类声明了一个友元函数friendFunction，该函数可以访问Base类的私有和保护成员。当我们创建一个Base类对象baseObj时，friendFunction可以访问baseObj的私有和保护成员。<br>
+当创建一个Derived类对象derivedObj时，尝试调用friendFunction(derivedObj)，会抛出异常。因为派生类Derived继承了Base类的友元关系，但是这个继承并不会使friendFunction可以直接访问Derived类的私有和保护成员。<code>友元关系只对声明为友元的类有效，不会在继承层次中传递</code>。</p>
+<h2 id="静态成员">静态成员 </h2>
+<p>运行下面的代码：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Person</span>
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">++</span>_count<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword keyword-protected">protected</span><span class="token operator">:</span>
+    std<span class="token double-colon punctuation">::</span>string _name<span class="token punctuation">;</span> 
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-int">int</span> _count<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> Person<span class="token double-colon punctuation">::</span>_count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Student</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Person</span></span>
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-protected">protected</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> _stuNum<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Graduate</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Student</span></span>
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-protected">protected</span><span class="token operator">:</span>
+    std<span class="token double-colon punctuation">::</span>string _seminarCourse<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   
+   
+        Student s1<span class="token punctuation">;</span>
+        Student s2<span class="token punctuation">;</span>
+        Student s3<span class="token punctuation">;</span>
+        Graduate s4<span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">" 人数 :"</span> <span class="token operator">&lt;&lt;</span> Person<span class="token double-colon punctuation">::</span>_count <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre><p>得到结果：4。因为基类定义了static静态成员，则整个继承体系里面<code>只有一个这样的成员</code>。</p>
+<h1 id="菱形虚拟继承">菱形虚拟继承 </h1>
+<h2 id="概念">概念 </h2>
+<blockquote>
+<p>菱形虚拟继承是指在多重继承中，通过使用虚拟继承来解决由于多个基类共同派生同一个中间基类而导致的二义性和资源浪费问题。</p>
+</blockquote>
+<p>假设有一个基类Animal，两个派生类Bird和Fish，以及一个继承自Bird和Fish的派生类FlyingFish。此时，如果Bird和Fish都派生自Animal，而FlyingFish又同时继承自Bird和Fish，那么会形成一个菱形继承的结构。</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>        Animal
+         /    \
+       Bird   Fish
+         \    /
+        FlyingFish
+</code></pre><p>在这种情况下，FlyingFish类会同时继承自Bird和Fish，而Bird和Fish都继承自Animal。这样就会导致FlyingFish类中<code>有两份Animal类的副本</code>，而这两份副本实际上是<code>同一个类的不同实例</code>，造成了资源浪费。</p>
+<p>此外，如果Bird和Fish分别定义了相同名称的成员函数或成员变量，那么在FlyingFish中使用这些名称时将会产生<code>二义性</code>。</p>
+<p>C++提供了虚拟继承（virtual inheritance）的机制。在虚拟继承中，使用<code>关键字virtual</code>来声明继承，使得派生类只继承基类的一个<code>共同基类的单一实例</code>，而不是每个直接或间接基类都有一份实例。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token comment">// Animal 类定义</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Bird</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-public">public</span> <span class="token class-name">Animal</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token comment">// Bird 类定义</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Fish</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-public">public</span> <span class="token class-name">Animal</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token comment">// Fish 类定义</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">FlyingFish</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Bird</span><span class="token punctuation">,</span> <span class="token keyword keyword-public">public</span> <span class="token class-name">Fish</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token comment">// FlyingFish 类定义</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>通过在Bird和Fish类的继承中使用virtual关键字，FlyingFish类将只继承一份Animal类的实例，从而避免了资源浪费和二义性。</p>
+<blockquote>
+<p>二义性？</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">eat</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Animal is eating."</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Bird</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-public">public</span> <span class="token class-name">Animal</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">fly</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Bird is flying."</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Fish</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-public">public</span> <span class="token class-name">Animal</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">swim</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Fish is swimming."</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">FlyingFish</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Bird</span><span class="token punctuation">,</span> <span class="token keyword keyword-public">public</span> <span class="token class-name">Fish</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token comment">// FlyingFish 类继承自 Bird 和 Fish</span>
+    <span class="token comment">// Bird 和 Fish 类虚拟继承自 Animal</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>在这个类层次结构中，FlyingFish类继承自Bird和Fish，而Bird和Fish类都虚拟继承自Animal。</p>
+<p>如果没有使用虚拟继承，FlyingFish类将同时继承来自Bird和Fish的各自实例的Animal部分。这样，在FlyingFish类中调用eat()函数时，会发生二义性，因为存在两个Animal的实例。</p>
+<blockquote>
+<p>问题代表本质就在于<code>编译器无法确定应该调用哪个Animal类的eat()函数</code>，从而导致了二义性。</p>
+</blockquote>
+<h2 id="原理">原理 </h2>
+<p>如果不用虚拟继承，那么如果有下列结构，会出现数据冗余。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">A</span>
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> _a<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">B</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">A</span>
+<span class="token comment">//class B : virtual public A</span></span>
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> _b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">C</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">A</span>
+<span class="token comment">//class C : virtual public A</span></span>
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> _c<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">D</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">B</span><span class="token punctuation">,</span> <span class="token keyword keyword-public">public</span> <span class="token class-name">C</span></span>
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> _d<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>D里会有两个A的_a,这样对内存是一种浪费，也造成了二义性。当改用<code>虚拟继承</code>后，D就只会继承到一个公用的_a了。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    D d<span class="token punctuation">;</span>
+    d<span class="token punctuation">.</span>B<span class="token double-colon punctuation">::</span>_a <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    d<span class="token punctuation">.</span>C<span class="token double-colon punctuation">::</span>_a <span class="token operator">=</span> <span class="token number">9</span><span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> d<span class="token punctuation">.</span>_a<span class="token punctuation">;</span>  <span class="token comment">//输出9而不是2,2被9覆盖。</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>运行下面的代码：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    D d<span class="token punctuation">;</span>
+    d<span class="token punctuation">.</span>B<span class="token double-colon punctuation">::</span>_a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    d<span class="token punctuation">.</span>C<span class="token double-colon punctuation">::</span>_a <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    d<span class="token punctuation">.</span>_b <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    d<span class="token punctuation">.</span>_c <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+    d<span class="token punctuation">.</span>_d <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> d<span class="token punctuation">.</span>_a<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>当不采用虚拟继承时：<br>
+打开内存窗口，监视d的地址。</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>0x000000E2788FF968  01 00 00 00  ....    //d.B::_a
+0x000000E2788FF96C  03 00 00 00  ....
+0x000000E2788FF970  02 00 00 00  ....    //d.C::_a
+0x000000E2788FF974  04 00 00 00  ....
+0x000000E2788FF978  05 00 00 00  ....
+</code></pre><p>可以看到存在两个不同的_a。</p>
+<p>当采用虚拟继承时：</p>
+<img src="./继承与多态_files/继承和多态1.png">
+<p>可以看到，此时只存在唯一的_a了。</p>
+<p>当一个类进行虚继承（virtual inheritance），意味着该类继承自一个虚基类。</p>
+<p>虚继承的实现依赖于<code>虚基表（virtual table）和虚基表指针（vptr）</code>：</p>
+<blockquote>
+<p>虚基表（virtual table）</p>
+</blockquote>
+<p>虚基表是一个数据结构，包含了虚基类的相关信息，如虚基类的<code>数据成员偏移量</code>和虚函数表的指针（如果存在虚函数）。<br>
+对于每个虚基类，编译器会生成一个虚基表。虚基表中的条目和顺序与虚基类的声明顺序一致。<br>
+图中的0060cd4c和0060cbac就是两个虚基表的地址。</p>
+<blockquote>
+<p>虚基表指针（vptr）</p>
+</blockquote>
+<p>每个含有虚函数或者继承了虚基类的类都会在其对象中包含一个<code>指向虚基表的指针</code>，称为虚基表指针（vptr）。<br>
+vptr 存储着对应类的虚基表的地址。编译器会在每个对象的<code>起始位置</code>（通常是对象的内存布局的开头）存储这个指针。</p>
+<p>class D 对象中的内存布局包含<code>两个虚基表指针</code>，其中一个指向 class B 的虚基表，另一个指向 class C 的虚基表(如图中蓝线所指，两个指针分别指向两张虚基表)。通过查询各自的虚基表中所存放的<code>偏移量</code>，再和各自指向虚基表的指针的地址相加，就可以获取到_a的真实位置了！</p>
+<blockquote>
+<p>如图，第一个虚基表地址为0060cd4c，偏移量为14 00 00 00，也就是20个字节，正好一行是4字节偏移，往下数四行不正好就是_a的存储位置了吗？0060cbac也是同理，偏移量是12个字节，往下数三行即可。</p>
+</blockquote>
+<h1 id="多态的实现">多态的实现 </h1>
+<h2 id="构成条件">构成条件 </h2>
+<blockquote>
+<p>多态（polymorphism）的构成条件：继承（inheritance）和虚函数（virtual function）。</p>
+</blockquote>
+<p>继承关系（Inheritance）：多态是通过<code>继承关系</code>来实现的。在 C++ 中，基类（父类）可以派生出派生类（子类）。子类可以继承基类的成员变量和成员函数。这样就可以使用<code>基类的指针或引用</code>来操作派生类的对象。</p>
+<p>虚函数（Virtual Function）：通过使用虚函数，可以在基类中声明一个虚函数，然后在派生类中进行<code>重写（覆盖）</code>。虚函数使得在运行时动态地确定要调用的函数，而非静态绑定。<br>
+在基类中，使用 virtual 关键字声明虚函数。<br>
+在派生类中，使用 override 关键字来明确地重写基类中的虚函数。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Shape</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-void">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Drawing a shape."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Circle</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Shape</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-override">override</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Drawing a circle."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Square</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Shape</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-override">override</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Drawing a square."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Shape<span class="token operator">*</span> shapePtr<span class="token punctuation">;</span>
+    Circle circle<span class="token punctuation">;</span>
+    Square square<span class="token punctuation">;</span>
+
+    shapePtr <span class="token operator">=</span> <span class="token operator">&amp;</span>circle<span class="token punctuation">;</span>
+    shapePtr<span class="token operator">-&gt;</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Output: Drawing a circle.</span>
+
+    shapePtr <span class="token operator">=</span> <span class="token operator">&amp;</span>square<span class="token punctuation">;</span>
+    shapePtr<span class="token operator">-&gt;</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Output: Drawing a square.</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>两个要点：</p>
+<ol>
+<li>必须通过<code>基类的指针或者引用</code>调用虚函数。</li>
+<li>被调用的函数必须是<code>虚函数</code>，且派生类必须对基类的虚函数进行重写。</li>
+</ol>
+<h2 id="虚函数">虚函数 </h2>
+<p>那么何为虚函数？</p>
+<blockquote>
+<p>虚函数是一种用于实现运行时多态性的特殊函数，可以在基类中声明一个函数为虚函数，然后在派生类中进行<code>重写（覆盖）</code>。这使得在运行时能够<code>动态地确定</code>要调用的函数版本。</p>
+</blockquote>
+<p>在基类中，使用 <code>virtual 关键字</code>来声明虚函数。当在基类中将一个成员函数声明为虚函数时，C++ 编译器会为该类创建一个<code>虚函数表（vtable）</code>（也可以称为虚表），其中保存了指向派生类重写函数的指针。这个虚函数表使得在运行时能够确定调用的是哪个函数版本。</p>
+<p>在派生类中，使用 override 关键字来明确地重写基类中的虚函数。通过重写，派生类提供了一个<code>与基类虚函数同名、参数列表相同</code>的新实现。</p>
+<p>通过基类的指针或引用来调用虚函数时，实际上会在运行时根据对象的类型<code>动态绑定</code>到正确的函数版本。这使得能够调用到派生类中的重写函数，而不是基类的实现。</p>
+<p>虚函数的重写(覆盖)：派生类中有一个跟基类<code>完全相同</code>的虚函数(即派生类虚函数与基类虚函数的返回值类型、函数名字、参数列表完全相同)，称子类的虚函数重写了基类的虚函数。</p>
+<p>构成条件部分的代码基本展示了虚函数用法。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Shape<span class="token operator">*</span> shapePtr<span class="token punctuation">;</span>
+    Circle circle<span class="token punctuation">;</span>
+    Square square<span class="token punctuation">;</span>
+
+    shapePtr <span class="token operator">=</span> <span class="token operator">&amp;</span>circle<span class="token punctuation">;</span>
+    shapePtr<span class="token operator">-&gt;</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Output: Drawing a circle.</span>
+
+    shapePtr <span class="token operator">=</span> <span class="token operator">&amp;</span>square<span class="token punctuation">;</span>
+    shapePtr<span class="token operator">-&gt;</span><span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Output: Drawing a square.</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>如果基类的<code>析构函数</code>为虚函数，此时派生类析构函数只要定义，无论是否加virtual关键字，都与基类的析构函数构成重写，虽然函数名不相同，但可以理解为编译器对析构函数的名称做了特殊处理，编译后析构函数的名称统一处理成<code>destructor</code>。</p>
+<h1 id="虚函数表和虚基表的区别">虚函数表和虚基表的区别 </h1>
+<p>别把这两个东西给搞混了。</p>
+<blockquote>
+<p>虚基表</p>
+</blockquote>
+<p>在上面的部分已经提到过，在C++中，虚基表是用于解决菱形继承问题的一种机制。菱形继承指的是一个类同时继承了两个共同基类，而派生类又继承了这两个共同基类，导致派生类中<code>含有两份基类成员的副本</code>，造成冗余和二义性。</p>
+<p>为了解决这个问题，C++引入了虚基类的概念。虚基类是在多重继承中声明为虚拟的基类，这样在派生类中就只会包含一个共同的基类子对象，而不会出现冗余。</p>
+<blockquote>
+<p>虚函数表(虚表)</p>
+</blockquote>
+<p>虚函数表是数据库中一种用于<code>实现多态性</code>的机制，通常用于支持对象关系映射和继承关系。<br>
+其中包含了对象的虚函数指针,对象的虚函数通过虚表来实现动态绑定（Dynamic Binding），也就是在运行时确定调用哪个实际函数，实现多态性。</p>
+<p>当一个对象被创建时，会根据其实际类型初始化虚表指针，以便正确调用属于该对象实际类型的虚函数。这样，即使通过基类指针或引用来调用虚函数，也能够正确地执行派生类中相应的函数。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Shape</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-void">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Circle</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Shape</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-override">override</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Draw a circle.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Square</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Shape</span></span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-override">override</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Draw a square.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>在上述代码中，Shape类是一个抽象基类，它包含一个虚函数draw。Circle和Square是Shape的派生类，它们都实现了draw函数。每个对象的虚表中存储着<code>对应的虚函数指针</code>，确保在运行时能正确调用相应的派生类的draw函数。</p>
+<p>这么讲可能还是有点不清楚，得从原理下手才行。</p>
+<p>先看下面的代码：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span>
+<span class="token punctuation">{</span>
+ <span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+ <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+ std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"hello world"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+ <span class="token keyword keyword-int">int</span> _b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre><p>调一下内存窗口：<br>
+<img src="./继承与多态_files/继承与多态2.png"></p>
+<p>可以看到这里多出了一个<code>__vfptr</code>，对象中的这个指针我们叫做<code>虚函数表指针</code>(v代表virtual，f代表function)。一个含有虚函数的类中都至少都有一个虚函数表指针，因为虚函数的地址要被放到虚函数表中，所以一定会有__vfptr。</p>
+<p>再写一个派生类出来：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Base</span>
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+ <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-void">void</span> <span class="token function">print1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+ std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Base::print1()"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-void">void</span> <span class="token function">print2</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+  std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Base::print2()"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+ <span class="token punctuation">}</span>
+ <span class="token keyword keyword-void">void</span> <span class="token function">print3</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+ std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Base::print3()"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+ <span class="token punctuation">}</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+ <span class="token keyword keyword-int">int</span> _b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Derive</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Base</span></span>
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+ <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-void">void</span> <span class="token function">print1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Base::print1()"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+ <span class="token punctuation">}</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+ <span class="token keyword keyword-int">int</span> _d <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ Base b<span class="token punctuation">;</span>
+ Derive d<span class="token punctuation">;</span>
+ <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>调出内存窗口：<br>
+<img src="./继承与多态_files/继承与多态3.png"></p>
+<p>派生类对象d中同样包含一个虚表指针。d对象由两部分构成：一部分是<code>继承自父类的成员</code>，包括虚表指针，这部分可以称为继承部分；另一部分是派生类<code>自己的成员</code>，即新增的成员。基类b对象和派生类d对象的虚表是<code>不相同</code>的。在派生类d中，我们发现print1函数被重写（覆盖）。因此，d的虚表中存储的是重写后的Derive::print1，这也是虚函数的重写和覆盖的两种叫法，分别是语法层和原理层的称呼。</p>
+<p>另外，虚表中还包含继承自基类的其他虚函数，例如print2。由于print2是基类中的虚函数，在派生类中也被继承下来，因此被放进了派生类d的虚表中。但是print3并不是虚函数，因此不会放进派生类d的虚表中。</p>
+<p>虚函数表本质上是一个<code>存放虚函数指针</code>的指针数组，通常在数组的最后面会放置一个nullptr，表示虚函数表的结束。</p>
+<p>总结一下派生类虚表的生成过程：</p>
+<ol>
+<li>首先将基类中的虚表内容拷贝一份到派生类的虚表中；</li>
+<li>如果派生类重写了基类中的某个虚函数，就用派生类自己的虚函数<code>覆盖</code>虚表中基类的虚函数；</li>
+<li>派生类自己新增加的虚函数按照在派生类中的声明次序增加到派生类虚表的最后。</li>
+</ol>
+<p>这样，派生类的虚表就包含了基类的虚函数和派生类自己的虚函数，构成了完整的虚函数表。</p>
+<blockquote>
+<p>虚表存的是<code>虚函数指针</code>，不是虚函数，虚函数和普通函数一样的，都是存在<code>代码段</code>的，只是他的指针又存到了虚表中。</p>
+</blockquote>
+<p>虚表和虚函数也是产生多态的基本条件。<br>
+满足多态以后的函数调用，不是在编译时确定的，是运行起来以后到<code>对象</code>里去找的。不满足多态的函数调用时是<code>编译</code>时就确认好的。<br>
+也就是常说的静态绑定与动态绑定。静态绑定常见的就是函数重载，动态则是多态。</p>
+<p>有兴趣的还可以自行研究下多继承里虚基表与虚函数的位置关系，还有复杂的菱形继承情况。在这里就不多赘述了，以后有机会再补一篇关于这方面的博客。</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  </body></html>

@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)file:///C:/Users/13378343877/AppData/Local/Temp/crossnote2024103-4936-1gs9fc6.3we4.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>默认成员函数那些事儿</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+        <script type="text/javascript">
+          window.MathJax = ({"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"options":{},"loader":{}});
+        </script>
+        <script type="text/javascript" async="" src="./默认成员函数那些事儿_files/tex-mml-chtml.js.下载" charset="UTF-8"></script>
+        
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<blockquote>
+<p>在C++中，有许多<code>默认成员函数</code>，如默认构造函数、拷贝构造函数和析构函数等。这些默认成员函数在代码中扮演着重要的角色，它们可以帮助开发者快速<code>构建对象、复制对象和释放对象</code>。然而，这些默认成员函数的使用也有一些需要注意的细节和技巧。本文将详细介绍C++中的默认成员函数，包括其作用、使用方法、注意事项和实例说明等，旨在帮助读者深入了解和掌握这些重要的语言特性，从而写出更加高效可靠的代码。</p>
+</blockquote>
+<h1 id="概览">概览 </h1>
+<p>一个类没有成员，称为<code>空类</code>。但一个空类却并不为空。<br>
+编译器会在其中为开发者默认生成了两大类成员函数。<br>
+<img src="./默认成员函数那些事儿_files/成员函数1.png"></p>
+<p>构造函数：当<code>创建</code>一个对象时，如果没有<code>显式地</code>提供构造函数，编译器会自动生成一个默认构造函数。默认构造函数的主要功能是<code>初始化成员变量</code>，使对象能够正确地工作。</p>
+<p>析构函数：当一个对象<code>生命周期结束</code>时，如果没有<code>显式地</code>提供析构函数，编译器会自动生成一个默认的析构函数。析构函数的主要功能是<code>释放对象占用的资源</code>，如释放动态分配的内存等。</p>
+<p>拷贝构造函数：当一个对象要被<code>复制</code>到另一个对象中时，如果没有<code>显式地</code>提供拷贝构造函数，编译器会自动生成一个默认的拷贝构造函数。拷贝构造函数的主要功能是将一个已有对象的值复制到新的对象中。</p>
+<p>拷贝赋值运算符：当一个对象要被<code>赋值</code>给另一个对象时，如果没有<code>显式地</code>提供拷贝赋值运算符，编译器会自动生成一个默认的拷贝赋值运算符。拷贝赋值运算符的主要功能是将一个已有对象的值赋值给另一个对象。</p>
+<blockquote>
+<p>如果我们在类中显式地定义了这些成员函数，则编译器不会再生成默认版本。而且，如果我们定义了其中的某一个成员函数，则最好<code>也定义其它成员函数</code>，以保证它们能够协同工作，避免出现一些难以预料的问题。</p>
+</blockquote>
+<p><code>取地址重载</code>也可以算作默认成员函数的成员。主要是普通对象和const对象取地址，在文章后面也会提到。</p>
+<p>创建一个class data，作为示例。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">data</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+	<span class="token keyword keyword-int">int</span> _day<span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span> _month<span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span> _year<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><h1 id="构造函数">构造函数 </h1>
+<p>再未了解构造函数前，我们想要对类中private修饰的成员变量赋值，需要写一个函数来访问它。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>	date d1<span class="token punctuation">;</span>
+	d1<span class="token punctuation">.</span>_day <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+</code></pre><p>这样的案例是错误的，编译器报错：<code>成员不可访问</code>。因为此时的_day成员被private所修饰，只能在类里对其进行访问。<br>
+使用private的好处是极多的。建议将类中的<code>成员变量</code>用<code>private</code>来修饰实现封装，是因为这样能够有效地<code>保护数据，防止外部的非法访问和修改</code>，从而提高程序的安全性和可靠性。<br>
+封装可以做到：</p>
+<ol>
+<li>
+<p>隐藏实现细节：将成员变量封装在类的私有部分，可以隐藏实现细节，避免外部直接访问和修改，从而保证数据的<code>安全性和完整性</code>。</p>
+</li>
+<li>
+<p>提高代码复用性：类的成员变量只有在<code>类的内部</code>才能访问，所以可以在类的内部定义一些公共的成员函数，通过这些函数来访问和修改成员变量，从而实现代码的复用。</p>
+</li>
+<li>
+<p>方便代码维护：成员变量只能通过类的公共接口来访问，所以如果需要修改成员变量或者添加新的成员变量，只需要<code>修改类的公共接口</code>，而不需要修改外部的代码。</p>
+</li>
+</ol>
+<p>那么此时我们可能会采取写一个init函数来对成员变量进行初始化。这也正是<code>构造函数</code>的职能。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> day<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> month<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> year<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		_day <span class="token operator">=</span> day<span class="token punctuation">;</span>
+		_month <span class="token operator">=</span> month<span class="token punctuation">;</span>
+		_year <span class="token operator">=</span> year<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+</code></pre><p>构造函数并不是如他的名字——去创建一个对象，而是参与了<code>对象中成员变量的初始化</code>。</p>
+<blockquote>
+<p>构造函数是一个特殊的函数，<code>名字与类名是相同</code>的，在创建对象时就由编译器<code>直接调用</code>，且在对象整个生命周期内<code>只调用一次</code>。</p>
+</blockquote>
+<p>构造函数有这样的几个特点：</p>
+<ol>
+<li>函数名与类名是<code>相同</code>的。比如date类的构造函数就叫date。</li>
+<li>构造函数是<code>没有返回值</code>的。</li>
+<li>当对象进行实例化时，编译器会<code>自动</code>调用此函数。</li>
+<li>构造函数是可以进行重载的。</li>
+</ol>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token function">date</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+	<span class="token punctuation">}</span>
+<span class="token function">date</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> day<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> month<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> year<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		_day <span class="token operator">=</span> day<span class="token punctuation">;</span>
+		_month <span class="token operator">=</span> month<span class="token punctuation">;</span>
+		_year <span class="token operator">=</span> year<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+</code></pre><p>如上，这样就实现了两个构造函数——一个<code>有参构造</code>，一个<code>无参构造</code>。因为其支持重载，所以这样设置是没问题的。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>	date <span class="token function">d1</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2012</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//调用有参构造</span>
+	date d2<span class="token punctuation">;</span>  <span class="token comment">//调用无参构造,注意不能写成date d2()</span>
+</code></pre><blockquote>
+<p>当用户未进行显示定义时，编译器会<code>自动</code>生成一个<code>无参</code>构造函数。但一旦用户定义了，编译器就不会生成了。</p>
+</blockquote>
+<p>在c++中，类型可以被分为两种：<br>
+<img src="./默认成员函数那些事儿_files/成员函数2.png"></p>
+<p>像int，double这样的类型就是内置类型，也被称作基本类型。<br>
+而像上面定义的date类，就被叫做自定义类型。</p>
+<p>编译器在调用无参构造时，内置类型可能是随机值，也可能是0这样的值，这点<code>取决于编译器</code>。而自定义类型就一定会调用该类自己的<code>默认成员函数</code>。<br>
+我们又创建了一个类——student，并将其放在date类中。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">student</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	<span class="token function">student</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		age <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+		name <span class="token operator">=</span> <span class="token string">"chengzi"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+	string name<span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">date</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	<span class="token keyword keyword-void">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> day<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> month<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> year<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		_day <span class="token operator">=</span> day<span class="token punctuation">;</span>
+		_month <span class="token operator">=</span> month<span class="token punctuation">;</span>
+		_year <span class="token operator">=</span> year<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token comment">//date() {</span>
+
+	<span class="token comment">//}</span>
+	<span class="token comment">//date(int day, int month, int year) {</span>
+	<span class="token comment">//	_day = day;</span>
+	<span class="token comment">//	_month = month;</span>
+	<span class="token comment">//	_year = year;</span>
+	<span class="token comment">//}</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+	<span class="token keyword keyword-int">int</span> _day<span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span> _month<span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span> _year<span class="token punctuation">;</span>
+	student stu<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre><p>运行截图如下（vs2022）：<br>
+<img src="./默认成员函数那些事儿_files/成员函数3.png"><br>
+可以看到，虽然date的几个基本类型是随机值，但stu里带的成员变量因为<code>调用了自身的默认构造</code>，所以不是随机值。注意，调用的<code>必须</code>是默认构造也就是无参的哦。</p>
+<p>在c++11中规定： 内置类型可以在类中声明时给出默认值。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>        <span class="token keyword keyword-int">int</span> _day<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span> _month<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span> _year<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+	student stu<span class="token punctuation">;</span>
+</code></pre><p>运行截图：<br>
+<img src="./默认成员函数那些事儿_files/成员函数4.png"></p>
+<p><code>无参构造</code>和<code>全缺省</code>都被称为默认构造，但两者只能存在一个，否则编译器不知道调用哪一个。</p>
+<h1 id="析构函数">析构函数 </h1>
+<p>析构函数负责对象的<code>销毁</code>。<br>
+但析构函数不是对对象本身进行销毁，而是在编译器<code>出手销毁</code>时，作为一个强有力的工具，来帮助完成<code>对象资源</code>的清理。<br>
+析构函数的特征:</p>
+<ol>
+<li>析构函数的名就是在<code>类名</code>前加上一个<code>~</code>即可。</li>
+<li>同样的，析构函数没有返回值。</li>
+<li>析构函数是<code>不支持重载</code>的。</li>
+<li>在对象生命周期结束时，由编译器亲自调用析构函数。</li>
+</ol>
+<p>析构函数适用于哪些情景呢？</p>
+<ol>
+<li>动态分配内存：当我们使用动态分配内存时，需要使用析构函数来释放这些动态分配的内存，防止<code>内存泄漏</code>。</li>
+<li>对象销毁前的清理工作：当我们需要在对象销毁前进行一些清理工作时，可以使用析构函数来实现。例如，我们可以在析构函数中关闭对象的一些状态，保存对象的一些状态等等。</li>
+</ol>
+<p>所以当类中没有申请资源时，就不用写析构函数了，例如上面date类或者student类。而一旦类中进行了动态内存分配，我们就必须得自己写一个析构函数。<br>
+例如我们创建了一个类——stack。就必须要手动进行释放。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">stack</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	<span class="token function">stack</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		arr <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> capacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		currentsize <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token operator">~</span><span class="token function">stack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token function">free</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			arr <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+	<span class="token keyword keyword-int">int</span><span class="token operator">*</span> arr<span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span> capacity<span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span> currentsize<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>同样的，默认的析构函数会调用自定义成员变量默认的析构函数（如果类中存在自定义成员变量的话）。</p>
+<ul>
+<li>构造顺序是按照语句的顺序进行构造，析构是按照构造的<code>相反顺序</code>进行析构。</li>
+</ul>
+<p>题1.函数F中，本地变量a和b的构造函数(constructor)和析构函数(destructor)的调用顺序是: ( )</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>Class A<span class="token punctuation">;</span>
+
+Class B<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">F</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+	A a<span class="token punctuation">;</span>
+
+    B b<span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span>
+</code></pre><p>答案是a构造 b构造 b析构 a析构。</p>
+<p>题2.设已经有A,B,C,D4个类的定义，程序中A,B,C,D析构函数调用顺序为？（ ）</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>C c<span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">{</span>
+
+	A a<span class="token punctuation">;</span>
+
+	B b<span class="token punctuation">;</span>
+
+	<span class="token keyword keyword-static">static</span> D d<span class="token punctuation">;</span>
+
+  <span class="token keyword keyword-return">return</span> <span class="token number">0</span>；
+
+<span class="token punctuation">}</span>
+</code></pre><ol>
+<li>
+<p>类的析构函数调用一般按照构造函数调用的相反顺序进行调用，但是要注意static对象的存在，因为static改变了对象的生存作用域，需要等待程序结束时才会析构释放对象。</p>
+</li>
+<li>
+<p><code>全局</code>对象先于<code>局部</code>对象进行构造。</p>
+</li>
+<li>
+<p>局部对象按照出现的顺序进行构造，无论是否为static。</p>
+</li>
+<li>
+<p>所以构造的顺序为C A B D。</p>
+</li>
+<li>
+<p>析构的顺序按照构造的相反顺序析构，只需注意<code>static改变对象的生存作用域</code>之后，会放在<code>局部对象之后</code>进行析构。</p>
+</li>
+<li>
+<p>因此析构顺序为B A D C。</p>
+</li>
+</ol>
+<h1 id="拷贝构造函数">拷贝构造函数 </h1>
+<p>拷贝构造适用于创建一个与<code>原对象一模一样</code>的新对象。<br>
+且拷贝构造是一个构造函数的<code>重载</code>，且只有<code>单个形参</code>。<br>
+形参必须为<code>类类型对象的引用</code>，如果使用的是传值，那么编译器会报错。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token function">date</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> date<span class="token operator">&amp;</span> d<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		_day <span class="token operator">=</span> d<span class="token punctuation">.</span>_day<span class="token punctuation">;</span>
+		_month <span class="token operator">=</span> d<span class="token punctuation">.</span>_month<span class="token punctuation">;</span>
+		_year <span class="token operator">=</span> d<span class="token punctuation">.</span>_year<span class="token punctuation">;</span>
+		stu <span class="token operator">=</span> d<span class="token punctuation">.</span>stu<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+</code></pre><blockquote>
+<p>如果传递的是const date d，那么会引起<code>无限制的调用</code>。</p>
+</blockquote>
+<p>因为c++规定，在函数里调用自定义类型，必须要调用其<code>拷贝构造</code>来完成。因为传值通常就意味着拷贝，这点还是很好去理解的。只不过相较于内置类型的直接拷贝，自定义类型的传值拷贝稍微要麻烦一点点。</p>
+<p>如果是传值，不就陷入了一个无穷的递归之中了吗？传值就要拷贝，拷贝就要调用拷贝构造，这不是没完没了了？<br>
+<img src="./默认成员函数那些事儿_files/成员函数5.png" alt=""></p>
+<p>当用户未在类中设置显式定义，编译器会生成默认的拷贝构造函数。此函数可以按照字节序进行拷贝（也被称为浅拷贝）。<br>
+所以如果还是使用date或者student类，仍然没有必要去写一个拷贝构造函数。那换成上面的<code>stack</code>类呢？<br>
+答案是<code>不行</code>。<br>
+因为在stack类里我们定义了一个arr作为栈的<code>基址</code>。当使用浅拷贝的时候，拷贝过去的仍然是这个基址。<br>
+当程序准备退出时，stack1和stack2都要调用析构函数进行销毁，无论哪个对象先调用析构进行销毁，等到下一个对象要销毁时，发现arr那块空间的支配权已经还给了系统了，同时<code>多次的内存空间释放必然会造成程序崩溃</code>。<br>
+<img src="./默认成员函数那些事儿_files/成员函数6.png" alt=""><br>
+所以我们需要自行写一个拷贝构造函数。也就是深拷贝。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token function">stack</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> stack<span class="token operator">&amp;</span> stack1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		arr <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> stack1<span class="token punctuation">.</span>capacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">memcpy</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> stack1<span class="token punctuation">.</span>arr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> stack1<span class="token punctuation">.</span>currentsize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		capacity <span class="token operator">=</span> stack1<span class="token punctuation">.</span>capacity<span class="token punctuation">;</span>
+		currentsize <span class="token operator">=</span> stack1<span class="token punctuation">.</span>currentsize<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+</code></pre><p>拷贝构造的使用方式为：</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>stack <span class="token function">s2</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//s2为要拷贝的目标，s1为拷贝的原本</span>
+</code></pre><p>总结一下构造函数的适用场景：</p>
+<ol>
+<li>如上所示的stack s2(s1)，利用一个<code>已存在的对象来创建新对象</code>。</li>
+<li>函数中有<code>参数</code>为类类型的对象。如add(date d1)这个函数，调用了d1这个对象，那么在传参的过程中必然会使用到拷贝构造。</li>
+<li>函数<code>返回值</code>有类类型对象也是同样道理。</li>
+</ol>
+<h1 id="运算符重载">运算符重载 </h1>
+<h2 id="基本概念">基本概念 </h2>
+<p>运算符重载的引入是为了增强c++的代码可读性。其函数名为：<code> operator接需要重载的运算符号</code>。<br>
+并且在重载运算符中必须含有<code>至少一个类类型</code>的参数。</p>
+<p>比如重载一个判断两日期是否相等的==。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">==</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> date<span class="token operator">&amp;</span> d1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> d1<span class="token punctuation">.</span>_year <span class="token operator">==</span> _year <span class="token operator">&amp;&amp;</span> d1<span class="token punctuation">.</span>_month <span class="token operator">==</span> _month <span class="token operator">&amp;&amp;</span> d1<span class="token punctuation">.</span>_day <span class="token operator">==</span> _day<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+</code></pre><p>请注意： <code>::</code> ,<code>sizeof</code>,<code>?:</code>,<code> .</code>,<code> .*</code>不可被重载！</p>
+<h2 id="赋值运算符重载">赋值运算符重载 </h2>
+<p>赋值运算符重载是运算符重载的一种特例，它主要用于实现自定义类型的<code>深拷贝</code>。这个我们后面再说。<br>
+既然是赋值运算符重载，那么必然和普通的运算符重载有些许的区别，最明显的地方就在于<code>返回值</code>。<br>
+赋值运算符的返回值类型应该是一个<code>引用</code>，其目的是<code>支持连续赋值</code>。比如a=b=c，如果仍然按照上面的bool型返回，a=b判断后返回一个true或者false，那又该如何去判断c呢？为了实现连续判断肯定会返回一个类对象的引用。<br>
+参数类型也常用引用，目的是为了<code>提高效率</code>。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>date<span class="token operator">&amp;</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> date<span class="token operator">&amp;</span> d1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		_year <span class="token operator">=</span> d1<span class="token punctuation">.</span>_year<span class="token punctuation">;</span>
+		_day <span class="token operator">=</span> d1<span class="token punctuation">.</span>_day<span class="token punctuation">;</span>
+		_month <span class="token operator">=</span> d1<span class="token punctuation">.</span>_month<span class="token punctuation">;</span>
+		<span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+</code></pre><p>如上，*this的用法是需要重点理解的。<br>
+在C++中，return *this是一个<code>返回当前对象引用</code>的语句，常用于<code>实现链式调用</code>。例如：</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Class</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    Class<span class="token operator">&amp;</span> <span class="token function">func1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// do something</span>
+        <span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    Class<span class="token operator">&amp;</span> <span class="token function">func2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token comment">// do something</span>
+        <span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>在上面的示例中，func1()和func2()都返回MyClass类型的对象引用，因此可以在它们之间进行链式调用，如下所示：</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>Class obj<span class="token punctuation">;</span>
+obj<span class="token punctuation">.</span><span class="token function">func1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">func2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>这样的代码能够更加简洁和易读。同时，使用return *this也可以避免出现<code>多余的对象拷贝</code>操作，提高代码的效率。*this代表着返回当前对象，return *this与date &amp;作为返回值，则代表返回引用，引用就不必经过许多繁琐的拷贝工作，也就提高了效率。</p>
+<p>c++也规定：<code> 赋值运算重载只能是类的成员函数</code>！<br>
+其中比较重要的一点原因：赋值运算符是<code>作用于对象</code>上的，而对象是类的实例，因此赋值运算符必须能够访问类的私有成员，只有<code>类的成员函数才能够访问类的私有成员</code>，因此赋值运算符重载只能作为类的成员函数来定义。除此之外，赋值运算符重载还需要<code>返回一个对象的引用</code>，这个引用指向赋值后的对象。如果赋值运算符重载作为全局函数或友元函数来定义，则无法访问对象的私有成员，并且无法返回对象的引用，因此无法实现赋值运算符的重载。</p>
+<p>当用户未显式实现时，编译器也会自动生成一个<code>默认</code>的赋值运算符重载，以值的方式<code>逐字节</code>拷贝。<br>
+那么如果还是date这种类，直接使用默认的即可。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">assignment</span><span class="token punctuation">(</span>date<span class="token operator">&amp;</span> d1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token punctuation">(</span><span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span> <span class="token operator">=</span> d1<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+    date <span class="token function">d1</span><span class="token punctuation">(</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	date d2<span class="token punctuation">;</span>
+	d2<span class="token punctuation">.</span><span class="token function">assignment</span><span class="token punctuation">(</span>d1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>编译结果：<br>
+<img src="./默认成员函数那些事儿_files/成员函数7.png"></p>
+<p>但要是stack这样的类就不行了。s2=s1，将s1的内容拷贝给s2，那么s2和s1指向同一片空间不说，s2赋值后还会丢失原本的空间，导致内存泄漏，最终释放两次相同的空间也一定会造成程序崩溃。所以stack这样的类需要的是<code>深拷贝</code>。</p>
+<blockquote>
+<p>请牢记，只要涉及到资源管理，那么一定需要重写赋值运算符。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 赋值运算符重载，实现深拷贝  </span>
+    stack<span class="token operator">&amp;</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> stack<span class="token operator">&amp;</span> other<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword keyword-this">this</span> <span class="token operator">==</span> <span class="token operator">&amp;</span>other<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span> <span class="token comment">// 处理自赋值  </span>
+        <span class="token punctuation">}</span>  
+  
+        <span class="token comment">// 分配新资源并复制数据  </span>
+        capacity <span class="token operator">=</span> other<span class="token punctuation">.</span>capacity<span class="token punctuation">;</span>  
+        currentsize <span class="token operator">=</span> other<span class="token punctuation">.</span>currentsize<span class="token punctuation">;</span>  
+        arr <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> capacity<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        std<span class="token double-colon punctuation">::</span><span class="token function">memcpy</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> other<span class="token punctuation">.</span>arr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> currentsize<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        <span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+
+</code></pre><h2 id="一些运算符重载示例">一些运算符重载示例 </h2>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> date<span class="token operator">&amp;</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>_year <span class="token operator">&lt;</span> x<span class="token punctuation">.</span>_year<span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>_year <span class="token operator">==</span> x<span class="token punctuation">.</span>_year <span class="token operator">&amp;&amp;</span> _month <span class="token operator">&lt;</span> x<span class="token punctuation">.</span>_month<span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>_year <span class="token operator">==</span> x<span class="token punctuation">.</span>_year <span class="token operator">&amp;&amp;</span> _month <span class="token operator">==</span> x<span class="token punctuation">.</span>_month <span class="token operator">&amp;&amp;</span> _day <span class="token operator">&lt;</span> x<span class="token punctuation">.</span>_day<span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword keyword-return">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">==</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> date<span class="token operator">&amp;</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword keyword-return">return</span> _year <span class="token operator">==</span> x<span class="token punctuation">.</span>_year
+		<span class="token operator">&amp;&amp;</span> _month <span class="token operator">==</span> x<span class="token punctuation">.</span>_month
+		<span class="token operator">&amp;&amp;</span> _day <span class="token operator">==</span> x<span class="token punctuation">.</span>_day<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">&lt;=</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> date<span class="token operator">&amp;</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token generic-function"><span class="token function">this</span> <span class="token generic class-name"><span class="token operator">&lt;</span> x <span class="token operator">||</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span> <span class="token operator">==</span> x<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> date<span class="token operator">&amp;</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword keyword-return">return</span> <span class="token operator">!</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token keyword keyword-this">this</span> <span class="token operator">&lt;=</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">&gt;=</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> date <span class="token operator">&amp;</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword keyword-return">return</span> <span class="token operator">!</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token keyword keyword-this">this</span> <span class="token operator">&lt;</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">!=</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> date<span class="token operator">&amp;</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword keyword-return">return</span> <span class="token operator">!</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token keyword keyword-this">this</span> <span class="token operator">==</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+date <span class="token keyword keyword-operator">operator</span><span class="token operator">+</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> day<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	date <span class="token function">tmp</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	tmp <span class="token operator">+=</span> day<span class="token punctuation">;</span>
+	<span class="token keyword keyword-return">return</span> tmp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 前置++</span>
+date<span class="token operator">&amp;</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">++</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token operator">*</span><span class="token keyword keyword-this">this</span> <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 后置++</span>
+<span class="token comment">// 增加这个int参数不是为了接收具体的值，仅仅是占位，跟前置++构成重载</span>
+date <span class="token keyword keyword-operator">operator</span><span class="token operator">++</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	date tmp <span class="token operator">=</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+	<span class="token operator">*</span><span class="token keyword keyword-this">this</span> <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	
+	<span class="token keyword keyword-return">return</span> tmp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>至于开头提到的取地址与取地址操作符重载 ,基本不会在日常生活中使用，想要了解的可以自行谷歌。</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  </body></html>

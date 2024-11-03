@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)file:///C:/Users/13378343877/AppData/Local/Temp/crossnote2024103-4936-1lqzzfy.od1z.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>C++之引用</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+        <script type="text/javascript">
+          window.MathJax = ({"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"options":{},"loader":{}});
+        </script>
+        <script type="text/javascript" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" charset="UTF-8"></script>
+        
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<blockquote>
+<p>前言： 最近学到了c++中的引用，发现引用和c中所学到的指针有着很相似的效果，但在c++中仍然有着指针的一席之地，想必二者的适用场景是各有千秋，于是查阅资料，写了此文来方便日后复习。</p>
+</blockquote>
+<h1 id="引用的基本知识">引用的基本知识 </h1>
+<h2 id="概念">概念 </h2>
+<blockquote>
+<p>引用是C++中的一种<code>数据类型</code>，它是一种类似于指针的变量。引用可以被认为是一个变量的<code>别名</code>(比如你名字叫大明，外号叫小明，别人喊小明你肯定就知道是在叫你)，它提供了一种<code>访问变量</code>的方式，使得程序员可以通过<code>不同的名称来操作同一个变量</code>(喊大明小明都是在叫你)，从而简化了代码的编写。<br>
+引用的语法非常简单，可以通过在变量名前面加上“&amp;”符号来定义一个引用。例如，如果我们定义了一个整型变量a，可以通过以下语句来定义一个引用b：</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-int">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token operator">&amp;</span>b <span class="token operator">=</span> a<span class="token punctuation">;</span>
+</code></pre><p>这样，变量b就成为了变量a的别名，它们<code>指向同一个内存地址</code>(这点非常重要)。因此，对变量b的操作也会影响到变量a。</p>
+<h2 id="引用的适用场景">引用的适用场景 </h2>
+<ol>
+<li>引用必须在定义时进行<code>初始化</code>。一旦引用被初始化，它将一直指向该变量，并不能再被改变。</li>
+<li>引用可以作为<code>函数参数</code>传递。通过引用传递参数可以避免复制大量的数据，提高程序的效率。</li>
+<li>引用可以作为函数的<code>返回值</code>。通过引用返回值可以避免复制大量的数据，提高程序的效率。</li>
+<li>引用可以被用来操作数组，但它的使用有一些限制。<br>
+这几点我会在后面进行一个详细的解释。</li>
+</ol>
+<h1 id="正餐">正餐 </h1>
+<h2 id="初始化">初始化 </h2>
+<p>人可以有多个外号，同样，一个变量也可以有多个引用。<br>
+<img src="./C++之引用_files/引用-1.png"></p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code>    <span class="token keyword keyword-int">int</span> a<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> b <span class="token operator">=</span> a<span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> c <span class="token operator">=</span> a<span class="token punctuation">;</span>
+	cout <span class="token operator">&lt;&lt;</span> b <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+	cout <span class="token operator">&lt;&lt;</span> c <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+	c <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+	cout <span class="token operator">&lt;&lt;</span> b <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+</code></pre><p>得到的结果是10 10 20。说明了改变b与c可以影响a，且b与c指向的是<code>同一块</code>内存空间。<br>
+但一个引用就只可以引用一个实体。如果出现了一个<code>引用</code>引用多个实体的情况，编译器是不会放行的。<br>
+引用在定义时就必须<code>进行初始化</code>，这是不同于指针的一点。</p>
+<h2 id="常引用">常引用 </h2>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> a<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> b<span class="token operator">=</span>a<span class="token punctuation">;</span>
+</code></pre><p>这样的例子是典型的错误。编译器给出了报错原因：<br>
+<img src="./C++之引用_files/引用-2.png"></p>
+<blockquote>
+<p>在这段代码中，常量a被定义为const int类型，它的值<code>不能被修改</code>。同时，变量b被定义为int类型的引用，它指向了a的内存地址。由于a是一个常量，它的值不能被修改，因此<code>对b的任何修改都会影响到a的值</code>，这与const int类型的a所表示的<code>语义不符</code>。因此，编译器会报错，提示“invalid initialization of reference of type 'int&amp;' from expression of type 'const int'”。<br>
+常引用在c++里通常被用作函数参数，函数返回值或者成员变量。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+	cout <span class="token operator">&lt;&lt;</span> a <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>传入的a是一个常引用，此时在函数里对a的<code>任何修改</code>都是<code>非法</code>的！</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-const">const</span> string<span class="token operator">&amp;</span> <span class="token function">getLonger</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> string<span class="token operator">&amp;</span> str1<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> string<span class="token operator">&amp;</span> str2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> str1<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> str2<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> str1 <span class="token operator">:</span> str2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>此函数的功能是返回较长的一个字符串，常引用作为返回值确保了字符串在返回时<code>不会被修改</code>。此外，在作类成员变量，或者遍历容器时也会有常引用的身影。</p>
+<blockquote>
+<p>即当既要使用引用提高程序的效率(下面讲)，又不能在函数内部修改实参的值时，可使用常引用。</p>
+</blockquote>
+<h2 id="引用的适用场景-1">引用的适用场景 </h2>
+<h3 id="做参数">做参数 </h3>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-void">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> nums1<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> nums2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	cout <span class="token operator">&lt;&lt;</span> nums1 <span class="token operator">+</span> nums2 <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>上面就是一个引用做参数的典型例子，其不仅在写法上更简洁，效率也是更高的。</p>
+<ol>
+<li>减少了数据的<code>拷贝</code><br>
+当使用<code>传值</code>方式时，函数会将参数的值复制一份给形参，如果参数<code>较大</code>，则会消耗较多的时间和空间。而使用引用做参数时，函数只需要<code>传入参数的地址</code>，不需要复制数据，因此可以减少数据的拷贝，提高程序的效率。</li>
+<li>减少了内存的占用<br>
+当使用传值方式时，每次调用函数都需要为形参<code>分配内存空间</code>，当调用次数较多时，会占用较多的内存空间。而使用引用做参数时，只需要传递一个地址，不需要分配额外的内存空间，因此可以减少内存的占用，提高程序的效率。</li>
+</ol>
+<h3 id="做返回值">做返回值 </h3>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-int">int</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> nums1<span class="token punctuation">,</span><span class="token keyword keyword-int">int</span> nums2<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> nums1<span class="token operator">+</span>nums2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> a<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> b<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> c<span class="token operator">=</span><span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>这是一个<code>传值返回</code>的传统写法，在返回时会创建一个<code>临时变量</code>，哪怕函数的栈帧已经被销毁，main里面接受的值也是从临时变量得来的，所以这种传递方式是安全的。<br>
+<img src="./C++之引用_files/c++引用1.png"><br>
+但如果返回的是一个引用，那么情况就会出现变数了。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code><span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> nums1<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> nums2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-int">int</span> sum <span class="token operator">=</span> nums1 <span class="token operator">+</span> nums2<span class="token punctuation">;</span>
+		<span class="token keyword keyword-return">return</span> sum<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+</code></pre><p>此时int c=add(a, b)中的c是不确定的，可能得到正确的答案，那是因为add函数栈帧还没清理，如果栈帧被清理，得到的就是个随机值了。<br>
+同样的，如果将接受的变量换做一个<code>引用</code>，会变得更加的不可控。</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp c++"><code> <span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> c<span class="token operator">=</span><span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	 cout <span class="token operator">&lt;&lt;</span> c <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+	 <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"aaa\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	 cout <span class="token operator">&lt;&lt;</span> c <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+</code></pre><p>我的编译器给出的结果：</p>
+<blockquote>
+<p>30<br>
+aaa<br>
+-858993460</p>
+</blockquote>
+<p>可见在随意的调用另一个函数后，c的值发生了变化。<br>
+<img src="./C++之引用_files/c++引用2.png"></p>
+<p>此时，c是指向sum的，当add函数调用完成后<code>栈帧就被销毁</code>，但此时我的编译器仍然没有清理它，销毁意味着系统将add所用的栈帧空间<code>回收</code>，但回收并不意味着数据也随之抹去，比如你今天在A201上课，放学后你离开了A201，意味着你将教室归还，当你朋友第二天来<code>A201</code>上课时，教室是存在的,只是<code>使用者被换了</code>。<br>
+所以这里当add调用完成后，空间还给了操作系统，操作系统又把这块空间给了printf函数来使用，自然第二次输出c就会是乱码了。因为c始终都<code>指向</code>这个位置，但<code>谁来用</code>这个位置是不确定的。</p>
+<p>那么可以做如下的总结：</p>
+<ol>
+<li>几乎在任何的场景下使用<code>引用传参</code>都是可以的。</li>
+<li>但<code>引用返回</code>是需要谨慎使用的。一不留神就使用到了错误的空间。</li>
+<li>函数返回时，出了函数作用域，如果返回对象还<code>未归还</code>给系统，则可以使用引用返回，但如果已经将其归还给了系统，那么最好用传值返回。</li>
+</ol>
+<h1 id="引用和指针的区别">引用和指针的区别 </h1>
+<p>看到这里，你会发现指针似乎和引用没有很大的区别，确实，就我现阶段的学习来看，二者的差别并不是很大。<br>
+以下是我总结的一些差别和相同的地方。<br>
+区别：</p>
+<ol>
+<li>指针可以被<code>重新赋值</code>，而引用不行。(引用在初始化后不能改变所指向的对象)</li>
+<li>指针可以为<code>空</code>，而引用不行。</li>
+<li>指针可以进行指针运算，而引用不行。</li>
+<li>指针可以<code>指向空地址</code>，而引用必须指向已存在的对象。</li>
+<li>指针可以指向同一类型的不同对象，而引用只能指向同一类型的同一对象。</li>
+<li>引用必须在<code>定义时</code>初始化，而指针可以在任何时候进行初始化。</li>
+<li>指针有<code>多级</code>的说法，但引用没有。</li>
+<li>指针需要<code>解引用</code>才可以访问存储的地址，引用不用。<br>
+相同：</li>
+<li>指针和引用都是用来间接访问程序中的变量。</li>
+<li>指针和引用都可以作为函数的参数和返回值。</li>
+</ol>
+<p>指针和引用都可以提高程序的运行效率，因为它们避免了不必要的变量拷贝。<br>
+指针和引用都是C++中的两种重要的数据类型，它们在某些方面有相同之处，但也有很多区别。在使用时，需要根据具体的情况来选择使用哪种类型。例如，如果需要动态分配内存或者需要进行指针运算，则必须使用指针；而如果不需要修改变量的值，则可以使用引用，避免了指针的复杂性。</p>
+<p>还有一点很有意思，在语法的概念上，引用就是取一个别名，是<code>没有独立的空间</code>的。但在其底层实现上实际是存在空间的，这是因为<code>引用是按照指针的形式来实现的</code>。这一点可以在反汇编代码进行查证。<br>
+<img src="./C++之引用_files/c++引用3.png"></p>
+<p>可以看到反汇编代码几乎是一致的。但要深究其原理就等到以后再填坑啦。</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  </body></html>
